@@ -46,10 +46,7 @@
 					
 					<br/>
 					
-					<p:selectOneMenu value="#{usuarioMbean.idPapel}" >  
-            			<f:selectItem itemLabel="Escolha uma permissão" itemValue="" />  
-            			<f:selectItems value="#{papelMbean.papeisAsSelectItem}" />  
-        			</p:selectOneMenu> 
+				
 					
 					<p:commandButton value="Cadastrar"
 						action="#{usuarioMbean.cadastrar}" ajax="false" update="panelCadastro" rendered="#{usuarioMbean.entidade.id == null}"/>
