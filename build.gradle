@@ -25,7 +25,8 @@ dependencies {
 			"com.github.javarch:javarch-support:0.1-SNAPSHOT",
 			"postgresql:postgresql:9.1-901.jdbc4",
 			"org.primefaces.themes:bootstrap:1.0.8",
-			"org.seleniumhq.selenium:selenium-java:2.21.0"		
+			"org.seleniumhq.selenium:selenium-java:2.21.0",	
+			"org.apache.cxf:apache-cxf:2.7.1"
 }
 
 httpPort = 8081

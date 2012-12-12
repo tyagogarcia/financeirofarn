@@ -19,7 +19,7 @@
 		
 	<ui:insert name="menu">
 	
-		<h:panelGroup rendered="#{sec:ifAllGranted('ROLE_ADMIN')}">
+		<h:panelGroup rendered="#{sec:ifAllGranted('PAPEL_ADMIN')}">
 			Área de Administração [Adm]
 		 
 			<h:outputLink value="#{request.contextPath}/adm/usuario/list.jsf">
@@ -35,7 +35,7 @@
 			</h:outputLink>
 		</h:panelGroup>
 		
-		<h:panelGroup rendered="#{sec:ifAnyGranted('ROLE_ADMIN,ROLE_USUARIO')}">
+		<h:panelGroup rendered="#{sec:ifAnyGranted('PAPEL_ADMIN,PAPEL_USUARIO')}">
 			<br/> Área de Controle de Contas [Usuário e Adm]
 		
 				 

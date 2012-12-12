@@ -12,21 +12,16 @@
  	 	<intercept-url pattern="/index.xhtml" access="permitAll" />
  	 	<intercept-url pattern="/resources/**" access="permitAll" />
  	 	<intercept-url pattern="/javax.faces.resource/**" access="permitAll" />
- 	 	<intercept-url pattern="/adm/permissoes/**" access="hasRole('ROLE_ADMIN')" />
- 	 	<intercept-url pattern="/adm/usuario/**" access="hasRole('ROLE_ADMIN')" />
- 	 	<intercept-url pattern="/adm/tipoconta/**" access="hasRole('ROLE_ADMIN')" /> 	 	
-	    <intercept-url pattern="/**" access="hasAnyRole('ROLE_NADA','ROLE_USUARIO','ROLE_ADMIN')" />  
+ 	 	<intercept-url pattern="/adm/permissoes/**" access="hasRole('PAPEL_ADMIN')" />
+ 	 	<intercept-url pattern="/adm/usuario/**" access="hasRole('PAPEL_ADMIN')" />
+ 	 	<intercept-url pattern="/adm/tipoconta/**" access="hasRole('PAPEL_ADMIN')" /> 	 	
+	    <intercept-url pattern="/**" access="hasAnyRole('PAPEL_NADA','PAPEL_USUARIO','PAPEL_ADMIN')" />  
 	  </http>
  	
  	
 	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="admin" password="admin" authorities="ROLE_USUARIO,ROLE_ADMIN" />
-				<user name="usuario" password="usuario" authorities="ROLE_USUARIO" />
-				<user name="nada" password="nada" authorities="ROLE_NADA" />				
-			</user-service>
-		</authentication-provider>
+		<authentication-provider
+			user-service-ref="userDetailsService" />		 
 	</authentication-manager>
 
 </beans:beans>

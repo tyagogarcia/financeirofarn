@@ -16,7 +16,7 @@
 	<h:form>
 		<p:button value="Cadastrar" outcome="/adm/conta/create.jsf" />
 		<p:growl />
-	    <p:dataTable var="conta" value="#{contasMbean.findAllAsDataModel}" id="dataTable"  rendered="#{sec:ifAllGranted('ROLE_ADMIN')}" >
+	    <p:dataTable var="conta" value="#{contasMbean.findAllAsDataModel}" id="dataTableAdm"  rendered="#{sec:ifAllGranted('ROLE_ADMIN')}" >
 	
 	        <f:facet name="header">
 	           Relatório de caixa Admin
@@ -47,7 +47,7 @@
 	    
 	    
 	    
-	     <p:dataTable var="conta" value="#{contasMbean.findAllContaUsuarioAsDataModel}" id="dataTable"  rendered="#{sec:ifNotGranted('ROLE_ADMIN')}" >
+	     <p:dataTable var="conta" value="#{contasMbean.findAllContaUsuarioAsDataModel}" id="dataTableUser"  rendered="#{sec:ifNotGranted('ROLE_ADMIN')}" >
 	
 	        <f:facet name="header">
 	           Relatório de caixa Pessoal
