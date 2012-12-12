@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="titulo">
+		- Página inicial.
+	</ui:define>
+	
+	
+	<ui:define name="corpo">
+			
+			
+	<h:form>
+		<p:button value="Cadastrar" outcome="/adm/contas/create.jsf" />
+		<p:growl />
+	    <p:dataTable var="tipoconta" value="#{tipoContaMbean.findAllAsDataModel}" id="dataTable">
+	
+	        <f:facet name="header">
+	            Lista de Tipo Contas
+	        </f:facet>
+	
+	        <p:column headerText="Codigo">
+	            <h:outputText value="#{tipoconta.id}" />
+	        </p:column>
+	
+	        <p:column headerText="Nome">
+	            <h:outputText value="#{tipoconta.denominacao}" />
+	        </p:column>
+	
+		    <p:column headerText="Opções" >
+	            <p:button value="Editar" outcome="create" > 
+	            	<f:param name="idtipoconta" value="#{tipoconta.id}"/>
+	            	
+	            </p:button>
+	            
+	            <p:commandButton action="#{tipoContaMbean.remover}" value="Remover"  update="@form">
+	            	<f:setPropertyActionListener value="#{tipoconta}"  
+	                    target="#{tipoContaMbean.entidade}" />  
+	            </p:commandButton>
+	            	
+	        </p:column>		
+	
+	    </p:dataTable>
+	    
+	    </h:form>
+	</ui:define>
+	
+</ui:composition>

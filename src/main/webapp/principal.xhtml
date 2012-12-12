@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:ui="http://java.sun.com/jsf/facelets"      
+      xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>Página adm</title>
+</h:head> 
+<h:body> 
+
+	<a href="#{request.contextPath}/j_spring_security_logout">Logout</a>
+	
+	<hr/>
+	
+	<h:button id="botaoAcessoAdm" value="Perfil administrativo" outcome="adm/principal" rendered="#{sec:ifAllGranted('ROLE_ADMIN')}" />
+ 
+	 
+	<h:button value="Perfil cliente" outcome="vitrine/principal"/>
+
+<hr/>
+
+ 
+
+</h:body> 
+</html>

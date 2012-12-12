@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns="http://java.sun.com/xml/ns/javaee"
+   xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="webcore" version="3.0">
+   
+ 
+	<!-- Configuraçõe do Spring Security -->
+	  <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter>
+        <filter-name>httpMethod</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+
+	<filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>httpMethod</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+     <listener>
+        <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+    </listener>
+     
+    <context-param>
+		<param-name>facelets.LIBRARIES</param-name>
+		<param-value>/WEB-INF/springsecurity.taglib.xml</param-value>
+	</context-param>
+    
+    
+    <!-- Configurações do Spring -->
+    <!-- Java-based annotation-driven Spring container definition -->
+	<context-param>
+      <param-name>contextClass</param-name>
+      <param-value>
+         org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+      </param-value>
+   </context-param>
+   	<!-- Location of Java @Configuration classes that configure the components that makeup this application -->
+   <context-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>org.bootstrap.project.conf</param-value>
+   </context-param>
+   
+
+	<!-- Specifies the default mode of this application, to be activated if no other profile (or mode) is specified -->
+	<context-param>
+	     <param-name>spring.profiles.default</param-name>
+	     <param-value>hibernate,dev</param-value>
+	</context-param>
+	
+	<!-- Listener responsável pela inicialização do ApplicationContext -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- Listener responsável por habilitar os escopos request e session e habilitar a injeção do HttpRequest  -->
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	
+	<!-- Implementação padrão do OpenSessionInView do hibernate 4  -->
+	<!-- Descomentar se o profile estiver definido para Hibernate. (-Dspring.profiles.active=hibernate) -->
+	 
+	<filter>
+		<filter-name>hibernateFilter</filter-name>
+		<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>hibernateFilter</filter-name>
+		<url-pattern>*.jsf</url-pattern>
+	</filter-mapping>
+	
+	 
+	<!-- Implementação do padrão OpenEntityManagerInView do Spring 
+    <filter>
+	    <filter-name>oemInViewFilter</filter-name>
+	    <filter-class>
+	        org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
+	    </filter-class>	    
+	</filter>
+	
+	<filter-mapping>
+	    <filter-name>oemInViewFilter</filter-name>
+	    <url-pattern>*.jsf</url-pattern>
+	</filter-mapping>
+-->
+	<!-- Configurações do JSF. -->
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.faces</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern> 
+	</servlet-mapping>
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value> <!-- Production -->
+	</context-param>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>		
+	</welcome-file-list>
+	<context-param>
+		<description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>server</param-value>
+	</context-param>
+	    <context-param>
+        <param-name>javax.faces.PARTIAL_STATE_SAVING</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.FULL_STATE_SAVING_VIEW_IDS</param-name>
+        <param-value>/index.xhtml</param-value>
+    </context-param>
+	<context-param>
+		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+		<param-value>resources.application</param-value>
+	</context-param>
+	<listener>
+		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+	</listener>
+	 
+	
+	<!-- Configurações do Primefaces -->
+	
+	<context-param>  
+        <param-name>primefaces.THEME</param-name>  
+        <param-value>bootstrap</param-value>  
+    </context-param>  
+        
+	
+</web-app>

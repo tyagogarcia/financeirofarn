@@ -1,0 +1,78 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+
+<ui:define name="head">
+
+	<f:metadata>
+		<f:viewParam name="idProduto" value="#{produtoMBean.entidade.id}"/>
+		<f:event listener="#{produtoMBean.loadAfterSetViewParamId}" type="preRenderView"/>
+	</f:metadata>
+	
+</ui:define>
+
+	<ui:define name="titulo">
+		- Página cadastro produto.
+	</ui:define>
+	
+	
+	<ui:define name="corpo">
+	
+	
+	<p:panel header="#{produtoMBean.entidade.id == null ? 'Cadastrar produto' : 'Editar produto'}" id="panelCadastro">
+	
+	
+			<h:form prependId="false">
+					<p:growl />
+				<h:outputLabel value="Título" for="titulo"/>
+				<br/>
+				<p:inputText value="#{produtoMBean.entidade.titulo}" label="titulo" id="titulo" size="60" />
+									
+				<br/>
+				
+				<h:outputLabel value="Descrição" for="descricao"/>
+				<br/>
+				
+				
+				<p:inputTextarea id="descricao"  value="#{produtoMBean.entidade.descricao}" rows="5" cols="30" counter="counter" maxlength="255"       
+    					counterTemplate="{0} characters restando" autoResize="false"/>  
+  
+				<br/>
+				
+				<h:outputLabel value="Categoria" for="categoria"/>
+				<br/>
+				<p:selectOneMenu value="#{produtoMBean.entidade.categoria.id}" label="categoria" id="categoria" required="true">
+					<f:selectItems value="#{categoriaMBean.categoriasAsSelectItem}" />
+				</p:selectOneMenu>				
+				
+				<br/>
+				
+				
+				<h:outputLabel value="Valor" for="valor"/> <br/>
+				
+					<p:inputText value="#{produtoMBean.entidade.valor}" label="valor" id="valor" />
+									
+				
+				<br/>
+				
+				
+				<h:outputLabel value="Disponível" for="disponivel"/>
+				<br/>
+				<h:selectBooleanCheckbox value="#{produtoMBean.entidade.disponivel}" label="disponivel" id="disponivel"/>
+					
+				<br/>
+				
+				<p:commandButton action="#{produtoMBean.cadastrar}"  ajax="false"  value="Cadastrar" rendered="#{produtoMBean.entidade.id == null}"/>
+				<p:commandButton action="#{produtoMBean.atualizar}" ajax="false" value="Atualizar"  rendered="#{produtoMBean.entidade.id != null}"/>
+				<p:commandButton action="list.jsf" value="Voltar para listagem" ajax="false" immediate="true"/>
+			</h:form>
+			
+	</p:panel>	
+	
+	</ui:define>
+	
+</ui:composition>

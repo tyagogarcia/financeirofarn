@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Interface Administativa<ui:insert name="titulo"><h:outputText value="#{msg['app.titulo']}" /> </ui:insert></title>
+	
+	<ui:insert name="head">
+	
+	</ui:insert>
+</h:head>
+
+<h:body >
+		
+	<ui:insert name="menu">
+			Área de Administração
+		<h:form>
+			<h:outputLink value="usuario/create.xhtml">
+				<h:outputText value="Criar usuário" />
+			</h:outputLink>
+		</h:form>
+		<h:form>
+			<h:outputLink value="contas/create.xhtml">
+				<h:outputText value="Cadastrar Tipos de Contas" />
+			</h:outputLink>
+		</h:form>
+			Área de Controle de Contas 
+		<h:form>
+			<h:outputLink value="usuario/create.xhtml">
+				<h:outputText value="Cadastro de Contas a Pagar" />
+			</h:outputLink>
+		</h:form>
+		<h:form>
+			<h:outputLink value="contas/create.xhtml">
+				<h:outputText value="Cadastro de Contas a Receber" />
+			</h:outputLink>
+		</h:form>
+		<h:form>
+			<h:outputLink value="contas/create.xhtml">
+				<h:outputText value="Parcelamento de Contas a Pagar" />
+			</h:outputLink>
+		</h:form>
+			Área de Relatório 
+			<h:form>
+			<h:outputLink value="usuario/create.xhtml">
+				<h:outputText value="Relatório de caixa" />
+			</h:outputLink>
+		</h:form>
+		<h:form>
+			<h:outputLink value="contas/create.xhtml">
+				<h:outputText value="Relatório de contas a pagar" />
+			</h:outputLink>
+		</h:form>
+		<h:form>
+			<h:outputLink value="contas/create.xhtml">
+				<h:outputText value="Relatório de contas a receber" />
+			</h:outputLink>
+		</h:form>
+	</ui:insert>	
+	
+	<ui:insert name="corpo">
+	
+	</ui:insert>
+	
+	
+	<div align="center">
+	<p>
+		<ui:insert name="rodape">
+			Sistema bancário
+		</ui:insert>
+	</p>		
+	</div>
+</h:body>
+</html>

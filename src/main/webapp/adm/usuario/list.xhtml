@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="titulo">
+		- Página inicial.
+	</ui:define>
+	
+	
+	<ui:define name="corpo">
+			
+			
+	<h:form>
+		<p:button value="Cadastrar nova" outcome="/adm/usuario/create.jsf" />
+		<p:growl />
+	    <p:dataTable var="usuario" value="#{usuarioMbean.findAllAsDataModel}" id="dataTable">
+	
+	        <f:facet name="header">
+	            Lista de usuários
+	        </f:facet>
+	
+	        <p:column headerText="Codigo">
+	            <h:outputText value="#{usuario.id}" />
+	        </p:column>
+	
+	        <p:column headerText="Título da usuario">
+	            <h:outputText value="#{usuario.username}" />
+	        </p:column>
+	
+		    <p:column headerText="Opções" >
+	            <p:button value="Editar" outcome="create" > 
+	            	<f:param name="idusuario" value="#{usuario.id}"/>
+	            	
+	            </p:button>
+	            
+	            <p:commandButton action="#{usuarioMbean.remover}" value="Remover"  update="@form">
+	            	<f:setPropertyActionListener value="#{usuario}"  
+	                    target="#{usuarioMbean.entidade}" />  
+	            </p:commandButton>
+	            	
+	        </p:column>		
+	
+	    </p:dataTable>
+	    
+	    </h:form>
+	</ui:define>
+	
+</ui:composition>

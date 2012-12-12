@@ -1,0 +1,1 @@
+<% response.sendRedirect("principal.jsf"); %>

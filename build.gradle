@@ -1,0 +1,34 @@
+apply plugin: 'eclipse-wtp'
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+
+configurations.all {
+	// check for updates every build
+	resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+repositories {
+    mavenCentral()
+	mavenLocal()
+	maven { url "http://natalnet.br/~luksrn/mvnrepo/snapshot/"}	
+	maven { url 'http://repository.primefaces.org' }
+}
+
+dependencies {
+	
+	providedCompile 'javax.servlet:servlet-api:2.5',
+					'javax.servlet:jsp-api:2.0'
+	
+	compile "com.github.javarch:javarch-persistence:0.2-SNAPSHOT",
+	 		"com.github.javarch:javarch-jsf:0.1-SNAPSHOT",
+			"com.github.javarch:javarch-support:0.1-SNAPSHOT",
+			//"com.h2database:h2:1.3.168",
+			"postgresql:postgresql:9.1-901.jdbc4",
+			"org.primefaces.themes:bootstrap:1.0.8",
+			"org.seleniumhq.selenium:selenium-java:2.21.0"		
+}
+
+httpPort = 8081
+stopPort = 9451
+stopKey = 'foo'

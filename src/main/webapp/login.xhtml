@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:ui="http://java.sun.com/jsf/facelets"      
+      xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>Página Login</title>
+</h:head> 
+<h:body> 
+ 
+<h:form  prependId="false" action="#{request.contextPath}/j_spring_security_check" method="post">	 
+ 
+        
+ 
+	<p:panelGrid columns="2" align="center">  
+	    <f:facet name="header">  
+	        Login 
+	    </f:facet>  
+	  
+	    <h:outputLabel for="j_username" value="Usuário *"/>  
+	    <p:inputText id="j_username" value="" label="Usuario"  required="true"/>  
+	  
+	    <h:outputLabel for="j_password" value="Senha *" />  
+	    <p:password id="j_password" value="" required="true" label="Senha"/>  
+	  
+	    <f:facet name="footer">  
+	        <p:commandButton type="button"  ajax="false" value="Entrar" icon="ui-icon-check" style="margin:0" />
+	        <p:commandButton type="button" ajax="false" value="Esqueci minha senha" icon="ui-icon-check" style="margin:0" />	      
+	    </f:facet>  
+	    
+	    <p:row>
+	    	 <p:column  colspan="4" style="text-align: right">  
+                Username: admin Senha: admin
+            </p:column>  
+	    </p:row>
+	    
+	    <p:row>
+	    	 <p:column  colspan="4" style="text-align: right">  
+                Username: usuario Senha: usuario
+            </p:column>  
+	    </p:row>
+	</p:panelGrid>  
+</h:form>
+	
+</h:body> 
+</html>

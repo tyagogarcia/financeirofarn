@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:lv="http://java.sun.com/jsf/composite/lv"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="titulo">
+		- Página inicial.
+	</ui:define>
+	
+	
+	<ui:define name="corpo">
+		
+<h:form prependId="false">
+	<p:button value="Cadastrar novo Produto" outcome="/adm/produto/create.jsf" />
+    <p:dataTable var="produto" value="#{produtoMBean.findAllAsLazyDataModel}"
+    paginator="true" rows="10" lazy="true"  
+      rowsPerPageTemplate="5,10,15" 
+     id="dataTable">
+
+        <f:facet name="header">
+            Lista de Produtos
+        </f:facet>
+
+        <p:column headerText="Codigo">
+            <h:outputText value="#{produto.id}" />
+        </p:column>
+
+        <p:column headerText="Título">
+            <h:outputText value="#{produto.titulo}" />
+        </p:column>
+        
+        <p:column headerText="Descrição">
+            <h:outputText value="#{produto.descricao}" />
+        </p:column>
+        
+        
+        <p:column headerText="Categoria">
+            <h:outputText value="#{produto.categoria.titulo}" />
+        </p:column>
+        
+        
+        
+        <p:column headerText="Valor">
+            <h:outputText value="#{produto.valor}" />
+        </p:column>
+
+
+
+        
+        <p:column headerText="Disponível em estoque">
+            <lv:simNao  value="#{produto.disponivel}"/>            
+        </p:column>
+        
+        
+	    <p:column headerText="Opções" >
+            <p:button value="Editar" outcome="create" > 
+            	<f:param name="idProduto" value="#{produto.id}"/>            	
+            </p:button>
+            
+            <p:commandButton action="#{produtoMBean.remover}" value="Remover" update="@form">
+            	<f:setPropertyActionListener value="#{produto}"  
+                    target="#{produtoMBean.entidade}" />  
+            </p:commandButton>
+            	
+        </p:column>
+
+
+
+    </p:dataTable>
+</h:form>
+	</ui:define>
+	
+</ui:composition>
+

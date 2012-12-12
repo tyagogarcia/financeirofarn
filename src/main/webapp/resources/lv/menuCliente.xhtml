@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+	<composite:interface>
+		<composite:attribute name="titulo" />
+		<composite:attribute name="categoriaSelecionada" />		
+		<composite:attribute name="listaCategorias" type="java.util.List"/>
+		<composite:attribute name="metodoAcaoSelecionar" method-signature="void action()" />
+		
+	</composite:interface>
+	
+	<composite:implementation>
+	
+	<h:form>
+		<h2>#{cc.attrs.titulo}</h2>
+		<ul>
+				<ui:repeat var="produto" value="#{cc.attrs.listaCategorias}">
+					<li>
+						<h:commandLink value="#{produto.titulo}" action="#{cc.attrs.metodoAcaoSelecionar}"  >
+						
+							<f:setPropertyActionListener target="#{cc.attrs.categoriaSelecionada}" value="#{produto}"/>
+							<f:ajax render="@all" execute="@form"/>	
+						</h:commandLink>
+					</li>					         		            	
+	            </ui:repeat>	
+	    </ul>	    
+	</h:form>
+			
+			
+	</composite:implementation>
+	
+</html>
