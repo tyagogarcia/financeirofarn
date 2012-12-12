@@ -1,1 +1,1 @@
-<% response.sendRedirect("principal.jsf"); %>
+<% response.sendRedirect("adm/principal.jsf"); %>

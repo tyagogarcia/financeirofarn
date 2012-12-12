@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="titulo">
+		- Página inicial.
+	</ui:define>
+	
+	
+	<ui:define name="corpo">
+			
+			
+	<h:form>
+		<p:button value="Cadastrar" outcome="/adm/conta/create.jsf" />
+		<p:growl />
+	    <p:dataTable var="conta" value="#{contasMbean.findAllAsDataModel}" id="dataTable" >
+	
+	        <f:facet name="header">
+	           Relatório de caixa
+	        </f:facet>
+	
+	        <p:column headerText="Codigo">
+	            <h:outputText value="#{conta.id}" />
+	        </p:column>
+	
+	        <p:column headerText="Nome">
+	            <h:outputText value="#{conta.usuario.username}" />
+	        </p:column>
+	
+		    <p:column headerText="Tipo conta">
+	            <h:outputText value="#{conta.tipoConta.denominacao}" />
+	        </p:column>
+	
+	
+		    <p:column headerText="Estabelecimento">
+	            <h:outputText value="#{conta.estabelecimento.denominacao}" />
+	        </p:column>
+	
+		 <p:column headerText="Valor">
+	            <h:outputText value="#{conta.saldoAtual}" />
+	        </p:column>
+	
+	    </p:dataTable>
+	    
+	    </h:form>
+	</ui:define>
+	
+</ui:composition>

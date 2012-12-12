@@ -5,16 +5,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/template/template.xhtml">
 
-
-
-<ui:define name="head">
-
-	<f:metadata>
-		<f:viewParam name="idusuario" value="#{usuarioMbean.entidade.id}"/>
-		<f:event listener="#{usuarioMbean.loadAfterSetViewParamId}" type="preRenderView"/>
-	</f:metadata>
-	
-</ui:define>
+ 
 
 
 	<ui:define name="titulo">
@@ -39,7 +30,7 @@
 					<h:outputLabel value="Senha" for="senha" />
 					
 					<br/>
-					<p:inputText value="#{usuarioMbean.entidade.senha}"
+					<p:password value="#{usuarioMbean.entidade.senha}"
 						alt="Senha"  id="senha" size="30"/>
 					
 					<p/>
@@ -51,11 +42,8 @@
 					<p:commandButton value="Cadastrar"
 						action="#{usuarioMbean.cadastrar}" ajax="false" update="panelCadastro" rendered="#{usuarioMbean.entidade.id == null}"/>
 						
-					<p:commandButton value="Atualizar"
-						action="#{usuarioMbean.atualizar}" update="@form" rendered="#{usuarioMbean.entidade.id != null}">
-					</p:commandButton>
-						
-						<p:commandButton action="list.jsf" value="Voltar para listagem" ajax="false" immediate="true"/>
+				 
+					 <p:commandButton action="list.jsf" value="Voltar para listagem" ajax="false" immediate="true"/>
 				
 			</h:form>
 		</p:panel>

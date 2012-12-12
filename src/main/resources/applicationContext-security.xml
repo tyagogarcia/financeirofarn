@@ -12,16 +12,19 @@
  	 	<intercept-url pattern="/index.xhtml" access="permitAll" />
  	 	<intercept-url pattern="/resources/**" access="permitAll" />
  	 	<intercept-url pattern="/javax.faces.resource/**" access="permitAll" />
- 	 	<intercept-url pattern="/adm/**" access="hasRole('ROLE_ADMIN')" />
-	    <intercept-url pattern="/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />  
+ 	 	<intercept-url pattern="/adm/permissoes/**" access="hasRole('ROLE_ADMIN')" />
+ 	 	<intercept-url pattern="/adm/usuario/**" access="hasRole('ROLE_ADMIN')" />
+ 	 	<intercept-url pattern="/adm/tipoconta/**" access="hasRole('ROLE_ADMIN')" /> 	 	
+	    <intercept-url pattern="/**" access="hasAnyRole('ROLE_NADA','ROLE_USUARIO','ROLE_ADMIN')" />  
 	  </http>
  	
  	
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
-				<user name="admin" password="admin" authorities="ROLE_USER, ROLE_ADMIN" />
-				<user name="usuario" password="usuario" authorities="ROLE_USER" />				
+				<user name="admin" password="admin" authorities="ROLE_USUARIO,ROLE_ADMIN" />
+				<user name="usuario" password="usuario" authorities="ROLE_USUARIO" />
+				<user name="nada" password="nada" authorities="ROLE_NADA" />				
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>

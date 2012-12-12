@@ -20,44 +20,37 @@
 	<ui:insert name="menu">
 	
 		<h:panelGroup rendered="#{sec:ifAllGranted('ROLE_ADMIN')}">
-			Área de Administração
+			Área de Administração [Adm]
 		 
-			<h:outputLink value="#{request.contextPath}/adm/usuario/create.jsf">
-				<h:outputText value="Cadastro de usuário" />
+			<h:outputLink value="#{request.contextPath}/adm/usuario/list.jsf">
+				<h:outputText value="Usuarios" />
 			</h:outputLink>
 			| 
 			<h:outputLink value="#{request.contextPath}/adm/permissoes/list.jsf">
 				<h:outputText value=" Definição de permissões" />
 			</h:outputLink>
 			| 
-			<h:outputLink value="#{request.contextPath}/adm/contas/create.jsf">
-				<h:outputText value=" Cadastrar Tipos de Contas" />
+			<h:outputLink value="#{request.contextPath}/adm/tipoconta/list.jsf">
+				<h:outputText value=" Tipos de Contas" />
 			</h:outputLink>
 		</h:panelGroup>
-			| Área de Controle de Contas 
 		
-			<h:outputLink value="#{request.contextPath}/usuario/create.jsf">
-				<h:outputText value="Cadastro de Contas a Pagar" />
-			</h:outputLink>
-			<h:outputLink value="#{request.contextPath}/contas/create.jsf">
-				<h:outputText value="Cadastro de Contas a Receber" />
-			</h:outputLink>
-			<h:outputLink value="#{request.contextPath}/contas/create.jsf">
-				<h:outputText value="Parcelamento de Contas a Pagar" />
-			</h:outputLink>
+		<h:panelGroup rendered="#{sec:ifAnyGranted('ROLE_ADMIN,ROLE_USUARIO')}">
+			<br/> Área de Controle de Contas [Usuário e Adm]
 		
-			| Área de Relatório 
-	 
-			<h:outputLink value="#{request.contextPath}/usuario/create.jsf">
-				<h:outputText value="Relatório de caixa" />
-			</h:outputLink>
-			<h:outputLink value="#{request.contextPath}/contas/create.jsf">
-				<h:outputText value="Relatório de contas a pagar" />
-			</h:outputLink>
-			<h:outputLink value="#{request.contextPath}/contas/create.jsf">
-				<h:outputText value="Relatório de contas a receber" />
-			</h:outputLink>
-		
+				 
+				<h:outputLink value="#{request.contextPath}/adm/conta/create.jsf">
+					<h:outputText value=" Cadastro Contas" />
+				</h:outputLink>
+				
+			<br/> Área de Relatório [Usuário e Adm]
+		 
+				<h:outputLink value="#{request.contextPath}/adm/conta/list.jsf">
+					<h:outputText value="Relatório de caixa" />
+				</h:outputLink>
+			<br/>	 	
+			
+		</h:panelGroup>
 			<h:outputLink value="#{request.contextPath}/j_spring_security_logout">Logout</h:outputLink>
 	
 	</ui:insert>	

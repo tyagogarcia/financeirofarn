@@ -14,7 +14,7 @@
 			
 			
 	<h:form>
-		<p:button value="Cadastrar nova" outcome="/adm/usuario/create.jsf" />
+		<p:button value="Cadastrar novo usuário" outcome="/adm/usuario/create.jsf" />
 		<p:growl />
 	    <p:dataTable var="usuario" value="#{usuarioMbean.findAllAsDataModel}" id="dataTable">
 	
@@ -26,15 +26,12 @@
 	            <h:outputText value="#{usuario.id}" />
 	        </p:column>
 	
-	        <p:column headerText="Título da usuario">
+	        <p:column headerText="username">
 	            <h:outputText value="#{usuario.username}" />
 	        </p:column>
 	
 		    <p:column headerText="Opções" >
-	            <p:button value="Editar" outcome="create" > 
-	            	<f:param name="idusuario" value="#{usuario.id}"/>
-	            	
-	            </p:button>
+	             
 	            
 	            <p:commandButton action="#{usuarioMbean.remover}" value="Remover"  update="@form">
 	            	<f:setPropertyActionListener value="#{usuario}"  

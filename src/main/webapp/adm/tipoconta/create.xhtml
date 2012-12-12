@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+
+
+<ui:define name="head">
+
+	<f:metadata>
+		<f:viewParam name="idtipoconta" value="#{tipoContaMbean.entidade.id}"/>
+		<f:event listener="#{tipoContaMbean.loadAfterSetViewParamId}" type="preRenderView"/>
+	</f:metadata>
+	
+</ui:define>
+
+
+	<ui:define name="titulo">
+		- Página cadastro de Tipo Conta.
+	</ui:define>
+	
+	
+	<ui:define name="corpo">
+		
+		<p:panel header="#{tipoContaMbean.entidade.id == null ? 'Cadastrar Tipo Conta' : 'Editar Tipo Conta'}" id="panelCadastro">
+				<h:form prependId="false">
+				
+					<p:growl />
+					<h:outputLabel value="Tipo Conta " for="denominacao" />
+					
+					<br/>
+					<p:inputText value="#{tipoContaMbean.entidade.denominacao}"
+						alt="Digite o tipo conta"  id="denominacao" size="30"/>
+					
+					<p/>
+					
+					<br/>
+					
+					
+					
+					<p:commandButton value="Cadastrar"
+						action="#{tipoContaMbean.cadastrar}" ajax="false" update="panelCadastro" rendered="#{tipoContaMbean.entidade.id == null}"/>
+						
+					<p:commandButton value="Atualizar"
+						action="#{tipoContaMbean.atualizar}" update="@form" rendered="#{tipoContaMbean.entidade.id != null}">
+					</p:commandButton>
+						
+						<p:commandButton action="list.jsf" value="Voltar para listagem" ajax="false" immediate="true"/>
+				
+			</h:form>
+		</p:panel>
+	</ui:define>
+	
+</ui:composition>
+

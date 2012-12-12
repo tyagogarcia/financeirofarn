@@ -27,6 +27,8 @@ public class Conta extends AbstractPersistable {
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="conta")
 	private List<Parcela> parcelas;
+	
+	 
 
 	private double saldoAtual;
 	
@@ -60,6 +62,14 @@ public class Conta extends AbstractPersistable {
 
 	public void setParcelas(List<Parcela> parcelas) {
 		this.parcelas = parcelas;
+	}
+
+	public double getSaldoAtual() {
+		return saldoAtual;
+	}
+
+	public void setSaldoAtual(double saldoAtual) {
+		this.saldoAtual = saldoAtual;
 	}
 	
 	

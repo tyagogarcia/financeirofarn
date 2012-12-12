@@ -18,21 +18,21 @@
 
 
 	<ui:define name="titulo">
-		- Página cadastro de Tipo Conta.
+		- Cadastro de conta
 	</ui:define>
 	
 	
 	<ui:define name="corpo">
 		
-		<p:panel header="#{tipoContaMbean.entidade.id == null ? 'Cadastrar Tipo Conta' : 'Editar Tipo Conta'}" id="panelCadastro">
+		<p:panel header="#{contasMbean.entidade.id == null ? 'Cadastrar Conta' : 'Editar Conta'}" id="panelCadastro">
 				<h:form prependId="false">
 				
 					<p:growl />
-					<h:outputLabel value="Tipo Conta " for="denominacao" />
+					<h:outputLabel value="Valor da conta " for="valorAtual" />
 					
 					<br/>
 					<p:inputText value="#{tipoContaMbean.entidade.denominacao}"
-						alt="Digite o tipo conta"  id="denominacao" size="30"/>
+						alt="Valor da conta"  id="denominacao" size="30"/>
 					
 					<p/>
 					
@@ -41,10 +41,10 @@
 					
 					
 					<p:commandButton value="Cadastrar"
-						action="#{tipoContaMbean.cadastrar}" ajax="false" update="panelCadastro" rendered="#{usuarioMbean.entidade.id == null}"/>
+						action="#{contasMbean.cadastrar}" ajax="false" update="panelCadastro" rendered="#{contasMbean.entidade.id == null}"/>
 						
 					<p:commandButton value="Atualizar"
-						action="#{tipoContaMbean.atualizar}" update="@form" rendered="#{tipoContaMbean.entidade.id != null}">
+						action="#{contasMbean.atualizar}" update="@form" rendered="#{contasMbean.entidade.id != null}">
 					</p:commandButton>
 						
 						<p:commandButton action="list.jsf" value="Voltar para listagem" ajax="false" immediate="true"/>
