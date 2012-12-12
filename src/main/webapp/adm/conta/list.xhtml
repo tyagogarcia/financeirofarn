@@ -16,10 +16,10 @@
 	<h:form>
 		<p:button value="Cadastrar" outcome="/adm/conta/create.jsf" />
 		<p:growl />
-	    <p:dataTable var="conta" value="#{contasMbean.findAllAsDataModel}" id="dataTable" >
+	    <p:dataTable var="conta" value="#{contasMbean.findAllAsDataModel}" id="dataTable"  rendered="#{sec:ifAllGranted('ROLE_ADMIN')}" >
 	
 	        <f:facet name="header">
-	           Relatório de caixa
+	           Relatório de caixa Admin
 	        </f:facet>
 	
 	        <p:column headerText="Codigo">
@@ -40,6 +40,37 @@
 	        </p:column>
 	
 		 <p:column headerText="Valor">
+	            <h:outputText value="#{conta.saldoAtual}" />
+	        </p:column>
+	
+	    </p:dataTable>
+	    
+	    
+	    
+	     <p:dataTable var="conta" value="#{contasMbean.findAllContaUsuarioAsDataModel}" id="dataTable"  rendered="#{sec:ifNotGranted('ROLE_ADMIN')}" >
+	
+	        <f:facet name="header">
+	           Relatório de caixa Pessoal
+	        </f:facet>
+	
+	        <p:column headerText="Codigo">
+	            <h:outputText value="#{conta.id}" />
+	        </p:column>
+	
+	        <p:column headerText="Nome">
+	            <h:outputText value="#{conta.usuario.username}" />
+	        </p:column>
+	
+		    <p:column headerText="Tipo conta">
+	            <h:outputText value="#{conta.tipoConta.denominacao}" />
+	        </p:column>
+	
+	
+		    <p:column headerText="Estabelecimento">
+	            <h:outputText value="#{conta.estabelecimento.denominacao}" />
+	        </p:column>
+	
+			 <p:column headerText="Valor">
 	            <h:outputText value="#{conta.saldoAtual}" />
 	        </p:column>
 	
