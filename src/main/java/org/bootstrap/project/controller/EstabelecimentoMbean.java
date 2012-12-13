@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import org.bootstrap.project.domain.TipoConta;
+import org.bootstrap.project.domain.Estabelecimento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -14,27 +14,17 @@ import com.github.javarch.jsf.SelectItemsUtils;
 
 @Component
 @Scope("view")
-public class TipoContaMbean extends AbstractCrudManagedBean<TipoConta> {
+public class EstabelecimentoMbean extends AbstractCrudManagedBean<Estabelecimento> {
 	@Autowired
 	SelectItemsUtils selectItens;
-	
-	private int idTipoConta;
 
-	public TipoContaMbean() {
+
+	public EstabelecimentoMbean() {
 		super();
 	}
 
-	public int getidTipoConta() {
-		return idTipoConta;
-	}
-
-	public void setidTipoConta(int idTipoConta) {
-		this.idTipoConta = idTipoConta;
-	}
-
-	public List<SelectItem> getTipoContaAsSelectItem() {
+	public List<SelectItem> getEstabelecimentoAsSelectItem() {
 		return selectItens.createSelectItems(getRepository().findAll(), "id",
 				"denominacao");
 	}
-
 }

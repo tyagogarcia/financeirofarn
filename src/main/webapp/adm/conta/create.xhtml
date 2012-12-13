@@ -8,12 +8,7 @@
 
 
 <ui:define name="head">
-
-	<f:metadata>
-		<f:viewParam name="idtipoconta" value="#{tipoContaMbean.entidade.id}"/>
-		<f:event listener="#{tipoContaMbean.loadAfterSetViewParamId}" type="preRenderView"/>
-	</f:metadata>
-	
+ 
 </ui:define>
 
 
@@ -27,12 +22,44 @@
 		<p:panel header="#{contasMbean.entidade.id == null ? 'Cadastrar Conta' : 'Editar Conta'}" id="panelCadastro">
 				<h:form prependId="false">
 				
-					<p:growl />
+					<h:messages />
+					
+					<h:panelGroup rendered="#{sec:ifAllGranted('PAPEL_ADMIN')}">
+						<h:outputLabel value="Usuario"  />
+						
+						<br/>
+						<p:selectOneMenu value="#{contasMbean.entidade.usuario.id}" label="usuario"  required="true">
+							<f:selectItem itemLabel="Selecione um..." itemValue="" />  
+							<f:selectItems value="#{usuarioMbean.usuariosAsSelectItem}" />
+						</p:selectOneMenu>				
+					</h:panelGroup>
+					<br/>
+					
+					<h:outputLabel value="Estabelecimento"  />
+					
+					<br/>
+					<p:selectOneMenu value="#{contasMbean.entidade.estabelecimento.id}" label="estabelecimento"  required="true">
+						<f:selectItem itemLabel="Selecione um..." itemValue="" />
+						<f:selectItems value="#{estabelecimentoMbean.estabelecimentoAsSelectItem}" />
+					</p:selectOneMenu>				
+				
+					<br/>
+					
+					<h:outputLabel value="TipoConta"  />
+					
+					<br/>
+					<p:selectOneMenu value="#{contasMbean.entidade.tipoConta.id}" label="tipoconta"   required="true">
+						<f:selectItems value="#{tipoContaMbean.tipoContaAsSelectItem}" />
+					</p:selectOneMenu>				
+				
+					<br/>
+					
+					
 					<h:outputLabel value="Valor da conta " for="valorAtual" />
 					
 					<br/>
-					<p:inputText value="#{tipoContaMbean.entidade.denominacao}"
-						alt="Valor da conta"  id="denominacao" size="30"/>
+					<p:inputText value="#{contasMbean.entidade.saldoAtual}"
+						alt="Valor da conta"  id="denominacao" />
 					
 					<p/>
 					
@@ -40,9 +67,17 @@
 					
 					
 					
-					<p:commandButton value="Cadastrar"
-						action="#{contasMbean.cadastrar}" ajax="false" update="panelCadastro" rendered="#{contasMbean.entidade.id == null}"/>
-						
+					
+					<h:panelGroup rendered="#{sec:ifAllGranted('PAPEL_ADMIN')}">
+						<p:commandButton value="Cadastrar"
+							action="#{contasMbean.cadastrar}" ajax="false" update="panelCadastro" rendered="#{contasMbean.entidade.id == null}"/>
+					</h:panelGroup>
+					
+					<h:panelGroup rendered="#{sec:ifNotGranted('PAPEL_ADMIN')}">
+						<p:commandButton value="Cadastrar"
+							action="#{contasMbean.cadastrarContaUsuario}" ajax="false" update="panelCadastro" rendered="#{contasMbean.entidade.id == null}"/>
+					</h:panelGroup>
+					
 					<p:commandButton value="Atualizar"
 						action="#{contasMbean.atualizar}" update="@form" rendered="#{contasMbean.entidade.id != null}">
 					</p:commandButton>
